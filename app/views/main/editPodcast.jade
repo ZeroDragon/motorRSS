@@ -1,0 +1,10 @@
+script.
+	activePodcast = !{JSON.stringify(podcast)}
+for schema in podcast.schema
+	label
+		.name #{schema.name}
+		input(type="text",name="#{schema.k}",value="#{podcast[schema.k]}",onChange="setActiveValue('#{schema.k}',$(this).val());")
+div
+	.name &nbsp;
+	.btn.guardar(onclick="guardarPodcast();") #{podcast.id?'Modificar':'Guardar'}
+	.btn.nuevo(onclick="newItem()") Borrar

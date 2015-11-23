@@ -1,0 +1,17 @@
+{
+  "name": "404podcast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.coffee",
+  "scripts": {
+    "test": "nodemon",
+    "start": "coffee app.coffee"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "basic-auth": "^1.0.3",
+    "chaitea-framework": "1.0.13",
+    "sqlite3": "^3.1.1"
+  }
+}

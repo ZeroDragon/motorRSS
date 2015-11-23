@@ -1,0 +1,108 @@
+body
+	margin 0
+	*
+		font-size 12px
+		font-family Arial
+		box-sizing border-box
+
+.glitter
+	position fixed
+	top -100%
+	right 10px
+	.message
+		border-radius 6px
+		padding 10px
+		border 1px solid #ccc
+		background-color #eee
+	.error
+		border 1px solid #AF6C6C
+		background-color #FFC8C8
+	.success
+		border 1px solid #6CAF74
+		background-color #CEFFC8
+
+label
+	display block
+.name
+	width 15%
+	text-align:right
+	display inline-block
+	padding-right 10px
+input
+	width 85%
+.title
+	text-align center
+	font-size 20px
+	font-weight 700
+	margin 20px 0 10px 0
+
+.row
+	font-size 0
+
+.col12
+	display inline-block
+	width 100%
+	padding 0 5%
+
+.col6
+	vertical-align top
+	display inline-block
+	width 50%
+	padding 0 5%
+
+a.btn
+	text-decoration none
+	color inherit
+.btn
+	display inline-block
+	border-radius 6px
+	padding 4px 10px
+	border 1px solid #ccc
+	background-color #eee
+	margin 4px
+	cursor pointer
+	&.nuevo
+		border 1px solid #6C8CAF
+		background-color #C8E1FF
+		&:hover
+			border 1px solid darken(#6C8CAF,60)
+			background-color darken(#C8E1FF,60)
+			color #fff
+	&.guardar
+		border 1px solid #6CAF74
+		background-color #CEFFC8
+		&:hover
+			border 1px solid darken(#6CAF74,60)
+			background-color darken(#CEFFC8,60)
+			color #fff
+	&.editar
+		border 1px solid #AFA76C
+		background-color #FCFFC8
+		&:hover
+			border 1px solid darken(#AFA76C,60)
+			background-color darken(#FCFFC8,60)
+			color #fff
+	&.borrar
+		border 1px solid #AF6C6C
+		background-color #FFC8C8
+		&:hover
+			border 1px solid darken(#AF6C6C,60)
+			background-color darken(#FFC8C8,60)
+			color #fff
+
+table
+	width 100%
+	margin-top 5px
+	th
+		border-bottom 2px solid #000
+		border-top 2px solid #000
+		padding 4px
+		border-left 2px solid #000
+		&:last-child
+			border-right 2px solid #000
+	td
+		border-bottom 1px dashed #ccc
+		padding 4px
+		border-left 1px dashed #ccc
+		&:last-child
+			border-right 1px dashed #ccc

@@ -1,0 +1,33 @@
+head
+	link(rel="stylesheet",type="text/css",href="styles/admin.css")
+	script(src="scripts/jquery.js")
+	script(src="scripts/admin.js")
+	script.
+		activeMetaData = !{JSON.stringify(info)}
+body
+	.row
+		.col12
+			.btn.borrar(onClick="logout()") Cerrar Sesión
+	.row
+		.col12
+			.title(onClick="$('#metaData').toggle()",style="cursor:pointer;") Información del podcast
+	.row.info#metaData(style="display:#{info.title?'none':'block'};")
+		.col12
+			for schema in info.schema
+				label
+					.name #{schema.name}
+					input(type="text",name="#{schema.k}",value="#{info[schema.k]}",onChange="setActiveMetaValue('#{schema.k}',$(this).val());")
+			div
+				.name &nbsp;
+				.btn.guardar(onclick="guardarMetaData();") Guardar
+
+	.row
+		.col12
+			.title Podcasts
+	.row
+		.col6
+			#newItem
+		.col6
+			#allItems
+	.glitter
+		.message Mensaje

@@ -1,0 +1,9 @@
+{
+	"login": {
+		"user" : "admin",
+		"password" : "admin"
+	},
+	"port" : 1339,
+	"session_secret" : "my secret stuff",
+	"timezone" : "America/Mexico_City"
+}

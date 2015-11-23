@@ -1,0 +1,27 @@
+doctype xml
+rss(xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0")
+  channel
+    title #{data.title}
+    link #{data.link}
+    language #{data.language}
+    copyright #{data.copyright}
+    itunes:subtitle #{data.subtitle}
+    itunes:author #{data.author}
+    itunes:summary #{data.summary}
+    itunes:owner
+      itunes:name #{data.owner_name}
+      itunes:email #{data.owner_email}
+    itunes:image(href="#{data.image}")/
+    itunes:category(text="#{data.category}")/
+
+    for item in pods
+      item
+        title #{item.title}
+        itunes:author #{item.author}
+        itunes:subtitle #{item.subtitle}
+        itunes:summary #{item.summary}
+        itunes:image(href="#{item.image}")/
+        enclosure(url="#{item.enclosure_url}" length="#{item.enclosure_length}" type="audio/mpeg")/
+        guid #{item.guid}
+        pubDate #{item.pubDate}
+        itunes:duration #{item.duration}

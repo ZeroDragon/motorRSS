@@ -1,0 +1,14 @@
+table(cellpadding="0",cellspacing="0")
+	tr
+		th Título
+		th Subtitulo
+		th Publicado
+		th &nbsp;
+	for podcast in pods
+		tr
+			td #{podcast.title}
+			td #{podcast.subtitle}
+			td #{podcast.pubDate}
+			td
+				.btn.editar(onclick="editar(#{podcast.id})") Editar
+				.btn.borrar(onclick="borrar(#{podcast.id})") Borrar
