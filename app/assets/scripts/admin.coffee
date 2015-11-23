@@ -22,18 +22,17 @@ glitterMessage = (type,message)->
 	)
 	return
 guardarMetaData = ->
-	glitterMessage 'success', 'Metadatos guardados'
 	$.post '/saveMetaData', {item:activeMetaData},(res)->
-		console.log res
+		glitterMessage 'success', 'Metadatos guardados'
 	return
 guardarPodcast = ->
 	text = ''
 	text += v for own k,v of activePodcast
 	return if text.length is 0
-	glitterMessage 'success', 'Episodio guardado'
-	# $.post '/savePodcast', {item:activePodcast},(res)->
-	# 	newItem()
-	# 	listPodcasts()
+	$.post '/savePodcast', {item:activePodcast},(res)->
+		glitterMessage 'success', 'Episodio guardado'
+		newItem()
+		listPodcasts()
 	return
 listPodcasts = ->
 	$.get '/getPodcasts', {item:activePodcast},(res)->
