@@ -8,7 +8,7 @@ auth = (req, res, next)->
 	user = basicAuth(req)
 	if (!user || !user.name || !user.pass)
 		return unauthorized res
-	if (user.name is 'foo' && user.pass is 'bar')
+	if (user.name is config.login.user && user.pass is config.login.password)
 		return next()
 	else
 		return unauthorized res
