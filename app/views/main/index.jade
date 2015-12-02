@@ -1,7 +1,49 @@
 head
+	title #{data.title}
 	link(rel="stylesheet",type="text/css",href="styles/main.css")
 	script(src="scripts/jquery.js")
 body
-	h1 404mx Podcast
-	div inserte diseño aquí
-	div: a(href="/rss") RSS
+	.row.headerRow
+		.col2.headLeft.aRight
+			.title #{data.title}
+		.col8
+			.subtitle #{data.subtitle}
+		.col2
+			.link: a(href="/rss") RSS
+	.row: br
+	.row
+		.col2
+			img.reponsive(src="#{data.image}")
+			br
+			br
+			.cat #{data.category}
+			.copy #{data.copyright}
+			br
+			a(href="#{data.itunes_link}" style="#{data.itunes_image}")
+		.col10
+			h1: a(href="#{data.link}") #{data.title}
+			hr
+			br
+			h2 Descripción
+			p #{data.summary}
+			br
+			table(cellspacing="0",cellpadding="0")
+				tr
+					th
+					th Nombre
+					th Descripción
+					th Duración
+					th
+				for item,k in pods
+					tr
+						td.number #{k+1}
+						td #{item.title}
+						td #{item.subtitle}
+						td #{item.duration}
+						td.aRight
+							audio(preload="none", controls)
+								source(src="#{item.enclosure_url}")
+								|Your browser does not support the audio element.
+					tr
+						td.endRow
+						td(colspan="4").endRow #{item.summary}

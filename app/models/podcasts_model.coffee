@@ -13,7 +13,9 @@ selectDB = (cb)->
 				owner_name TEXT,
 				owner_email TEXT,
 				image TEXT,
-				category TEXT
+				category TEXT,
+				itunes_link TEXT,
+				itunes_image TEXT
 			)
 		"""
 		db.run """
@@ -65,6 +67,8 @@ class Podcast
 		{k:"owner_email",name:"Email de Dueño"}
 		{k:"image",name:"Imagen"}
 		{k:"category",name:"Categoría"}
+		{k:"itunes_link",name:"Link en iTunes"}
+		{k:"itunes_image",name:"Banner de iTunes"}
 	]
 	constructor: (def)->
 		for item in @.schema

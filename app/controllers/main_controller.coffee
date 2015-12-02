@@ -1,7 +1,12 @@
 podcasts = CT_LoadModel 'podcasts'
 
 exports.home = (req,res)->
-	res.render config.static + '/main/index.jade'
+	podcasts.rss (data)->
+		res.render config.static + '/main/index.jade',{
+			data:data.data
+			pods:data.items
+			pretty:true
+		}
 
 exports.admin = (req,res)->
 	podcasts.getpocastInfo (info)->
