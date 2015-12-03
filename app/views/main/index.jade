@@ -2,6 +2,7 @@ head
 	title #{data.title}
 	link(rel="stylesheet",type="text/css",href="styles/main.css")
 	script(src="scripts/jquery.js")
+	script(src="scripts/main.js")
 body
 	.row.headerRow
 		.col2.headLeft.aRight
@@ -10,7 +11,8 @@ body
 			.subtitle #{data.subtitle}
 		.col2
 			.link: a(href="/rss") RSS
-	.row: br
+	.row &nbsp;
+	br
 	.row
 		.col2
 			img.reponsive(src="#{data.image}")
@@ -33,17 +35,31 @@ body
 					th Nombre
 					th Descripción
 					th Duración
-					th
+					th Fecha
+					th &nbsp;
 				for item,k in pods
 					tr
 						td.number #{k+1}
 						td #{item.title}
 						td #{item.subtitle}
 						td #{item.duration}
+						- var d = new Date(item.pubDate*1000)
+						td #{dias[d.getDay()]}, #{meses[d.getMonth()]} #{d.getDate()}, #{d.getFullYear()}
 						td.aRight
-							audio(preload="none", controls)
-								source(src="#{item.enclosure_url}")
-								|Your browser does not support the audio element.
+							audio(preload="none", controls, id="audio_#{k}", src="#{item.enclosure_url}")
+							.player
+								.button(onClick="toPlay('#audio_#{k}',this)",id="player_#{k}")
+									.inner
+										.bar1
+										.bar2
+										.triangle1
+										.triangle2
+								.progress(id="progress_#{k}")
+									.bar
+										.fuller
+							.descargar: a(href="#{item.enclosure_url}" download): img(src="/images/download.png")
 					tr
 						td.endRow
-						td(colspan="4").endRow #{item.summary}
+						td(colspan="5").endRow #{item.summary}
+	.row
+		#displayArea
