@@ -60,7 +60,7 @@ body
 				for item,k in pods
 					tr
 						td.number #{k+1}
-						td #{item.title}
+						td.noWrap #{item.title}
 						td #{item.subtitle}
 						td.hideSmall.hideMedium #{item.duration}
 						- var d = new Date(item.pubDate*1000)
