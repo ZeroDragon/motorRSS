@@ -3,27 +3,47 @@ head
 	link(rel="stylesheet",type="text/css",href="styles/main.css")
 	script(src="scripts/jquery.js")
 	script(src="scripts/main.js")
+	meta(name="viewport",content="width=device-width, initial-scale=1.0")
 body
-	.row.headerRow
+	.row.headerRow.hideSmall.hideMedium
 		.col2.headLeft.aRight
 			.title #{data.title}
 		.col8
 			.subtitle #{data.subtitle}
 		.col2
 			.link: a(href="/rss") RSS
+			.link |
+			.link: a(href="https://github.com/ZeroDragon/motorRSS",target="_blank") GitHub
+	.row.headerRow.hideBig
+		.col12
+			.title #{data.title}
+			.subtitle #{data.subtitle}
+			.link.pullRight: a(href="https://github.com/ZeroDragon/motorRSS",target="_blank") GitHub
+			.link.pullRight |
+			.link.pullRight: a(href="/rss") RSS
 	.row &nbsp;
 	br
 	.row
 		.col2
-			img.reponsive(src="#{data.image}")
-			br
-			br
-			.cat #{data.category}
-			.copy #{data.copyright}
-			br
-			a(href="#{data.itunes_link}" style="#{data.itunes_image}")
+			.hideMedium
+				img.reponsive(src="#{data.image}")
+				br
+				br
+				.cat #{data.category}
+				.copy #{data.copyright}
+				br
+				a(href="#{data.itunes_link}" style="#{data.itunes_image}")
+			.row.hideBig.hideSmall
+				.fCol6
+					img.reponsive(src="#{data.image}")
+				.fCol6
+					.cat #{data.category}
+					.copy #{data.copyright}
+					br
+					a(href="#{data.itunes_link}" style="#{data.itunes_image}")
 		.col10
-			h1: a(href="#{data.link}") #{data.title}
+			h1.hideSmall.hideMedium: a(href="#{data.link}") #{data.title}
+			.hideBig: br
 			hr
 			br
 			h2 Descripción
@@ -31,35 +51,61 @@ body
 			br
 			table(cellspacing="0",cellpadding="0")
 				tr
-					th
+					th &nbsp;
 					th Nombre
 					th Descripción
-					th Duración
-					th Fecha
+					th.hideSmall.hideMedium Duración
+					th.hideSmall.hideMedium Fecha
 					th &nbsp;
 				for item,k in pods
 					tr
 						td.number #{k+1}
 						td #{item.title}
 						td #{item.subtitle}
-						td #{item.duration}
+						td.hideSmall.hideMedium #{item.duration}
 						- var d = new Date(item.pubDate*1000)
-						td #{dias[d.getDay()]}, #{meses[d.getMonth()]} #{d.getDate()}, #{d.getFullYear()}
-						td.aRight
+						td.hideSmall.hideMedium #{dias[d.getDay()]}, #{meses[d.getMonth()]} #{d.getDate()}, #{d.getFullYear()}
+						td.aRight.hideSmall.hideMedium
 							audio(preload="none", controls, id="audio_#{k}", src="#{item.enclosure_url}")
 							.player
-								.button(onClick="toPlay('#audio_#{k}',this)",id="player_#{k}")
+								.button(onClick="toPlay('#audio_#{k}',this)",class="player_#{k}")
 									.inner
 										.bar1
 										.bar2
 										.triangle1
 										.triangle2
-								.progress(id="progress_#{k}")
+								.progress(class="progress_#{k}")
 									.bar
 										.fuller
 							.descargar: a(href="#{item.enclosure_url}" download): img(src="/images/download.png")
+					tr.hideBig
+						td
+						td Duración: #{item.duration}
+						td Fecha: #{dias[d.getDay()]}, #{meses[d.getMonth()]} #{d.getDate()}, #{d.getFullYear()}
+					tr.hideBig
+						td
+						td(colspan="2")
+							.player
+								.button(onClick="toPlay('#audio_#{k}',this)",class="player_#{k}")
+									.inner
+										.bar1
+										.bar2
+										.triangle1
+										.triangle2
+								.progress(class="progress_#{k}")
+									.bar
+										.fuller
+							.descargar.pullRight: a(href="#{item.enclosure_url}" download): img(src="/images/download.png")
 					tr
-						td.endRow
+						td.endRow &nbsp;
 						td(colspan="5").endRow #{item.summary}
+					tr.hideBig.hideMedium
+						td(colspan="3") &nbsp;
 	.row
-		#displayArea
+		.col12.credits.aCenter
+			| ------- 
+			a(href="https://github.com/ZeroDragon",target="_blank")
+				|Hecho por 
+				img(src="http://www.gravatar.com/avatar/90a0947bc0ffec1b239d6e48fd8c4dd2?s=200")
+				|ZeroDragon
+			|  -------
